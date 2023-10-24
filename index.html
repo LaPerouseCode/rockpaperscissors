@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html>
+    <header>
+        <script>
+            function playGame(playerSelection) {
+                const choice = ['rock', 'paper', 'scissors']; 
+                function getComputerChoice() {
+                    return choice[Math.floor(Math.random() * choice.length)];
+                }
+                
+                const computerSelection = getComputerChoice();
+                console.log("Computer's choice:", computerSelection);
+                console.log("Player's choice:", playerSelection);
+        
+                let result;
+        
+                switch (true) {
+                    case computerSelection === "rock" && playerSelection === "rock":
+                        result = 'exaequo';
+                        alert('Ex Aequo, replay!');
+                        break;
+        
+                    case computerSelection === "paper" && playerSelection === "rock":
+                        result = "computerwins";
+                        alert("You Lose! Paper beats Rock");
+                        break;
+        
+                    case computerSelection === "scissors" && playerSelection === "rock":
+                        result = "playerwins";
+                        alert("You win! Rock beats Scissors");
+                        break;
+        
+                    case computerSelection === "rock" && playerSelection === "scissors":
+                        result = "computerwins";
+                        alert("You Lose! Rock beats Scissors!");
+                        break;
+        
+                    case computerSelection === "paper" && playerSelection === "scissors":
+                        result = "playerwins";
+                        alert("You Win! Scissors beats Paper");
+                        break;
+        
+                    case computerSelection === "scissors" && playerSelection === "scissors":
+                        result = 'exaequo';
+                        alert('Ex Aequo, replay!');
+                        break;
+        
+                    case computerSelection === "rock" && playerSelection === "paper":
+                        result = "playerwins";
+                        alert('You Win! Paper beats Rock');
+                        break;
+        
+                    case computerSelection === "paper" && playerSelection === "paper":
+                        result = "exaequo";
+                        alert('Ex Aequo, replay!');
+                        break;
+        
+                    case computerSelection === "scissors" && playerSelection === "paper":
+                        result = "computerwins";
+                        alert('You Lose! Scissors beat Paper!');
+                        break;
+        
+                    default:
+                        alert('Invalid choice! Please choose rock, paper, or scissors.');
+                        result = 'invalid';
+                }
+        
+                console.log("Result:", result);
+                return result;
+            
+            }
+
+            const playerSelection1 = prompt("What is your first choice?").toLowerCase();
+            const result1 = playGame(playerSelection1);
+            console.log(result1);
+
+            const playerSelection2 = prompt("What is your second choice?").toLowerCase();
+            const result2 = playGame(playerSelection2);
+            console.log(result2);
+        </script>
+        
+    </header>
+<body>
+
+<h1>Rock paper scissors</h1>
+
+
+</body>
+</html> 
