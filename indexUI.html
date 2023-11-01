@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Rock paper scissors</h1>
+<button type="button" id="rock">ROCK</button> 
+<button type="button" id="paper">PAPER</button> 
+<button type="button" id="scissors">SCISSORS</button> 
+<div>
+    <p id="result">RESULTS</p>
+    <p>Player Score: <span id="playerScore">0</span></p>
+    <p>Computer Score: <span id="computerScore">0</span></p>
+    <!-- <p id="gameover">Game is now over!</p>
+    <p id="playerwinner"> You beat the computer for good!</p>
+    <p id="computerwins"> Unfortunately the Computer won this game!</p> -->
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    document.getElementById('rock').addEventListener('click', function() {
+        playGame('rock');
+    });
+
+    document.getElementById('paper').addEventListener('click', function() {
+        playGame('paper');
+    });
+
+    document.getElementById('scissors').addEventListener('click', function() {
+        playGame('scissors');
+    });
+
+    function getComputerChoice() {
+        const choices = ['rock', 'paper', 'scissors'];
+        const randomNumber = Math.floor(Math.random() * 3);
+        return choices[randomNumber];
+    }
+
+    function playGame(playerChoice) {
+        const computerChoice = getComputerChoice();
+        let result = "";
+
+        if (playerChoice === computerChoice) {
+            result = 'It\'s a tie!';
+        } else if ((playerChoice === 'rock' && computerChoice === 'scissors') ||
+                    (playerChoice === 'paper' && computerChoice === 'rock') ||
+                    (playerChoice === 'scissors' && computerChoice === 'paper')) {
+            result = 'You win!';
+            playerScore++;
+        } else {
+            result = 'Computer wins!';
+            computerScore++;
+        }
+
+        document.getElementById('result').textContent = `Player chose ${playerChoice} and Computer chose ${computerChoice}. ${result}`;
+        document.getElementById('playerScore').textContent = playerScore;
+        document.getElementById('computerScore').textContent = computerScore;
+
+        // Check for win condition after each round
+        if (playerScore === 5) {
+            document.getElementById('result').textContent = 'You beat the computer for good!';
+        } else if (computerScore === 5) {
+            document.getElementById('result').textContent = 'Computer won this game, sorry!';
+        }
+    }
+});
+</script>
+
+</body>
+</html>
+
+In this version, the game tracks the player's and computer's choices, determines the winner of each round, updates the scores, and displays the result.
